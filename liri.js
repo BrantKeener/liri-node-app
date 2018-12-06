@@ -5,6 +5,7 @@ const keyChain = require('./keys.js');
 const axios = require('axios');
 const userEntertainmentChoice = process.argv[2];
 const userArtistMovieChoice = process.argv[3];
+const moment = require('moment');
 
 // Check to make sure that both arguments have valid inputs
 function argCheck() {
@@ -38,17 +39,32 @@ function reachOut() {
 function BITReachOut() {
     axios ({
         method: 'get',
-        baseURL: `rest.bandsintown.com`,
+        baseURL: `https://rest.bandsintown.com`,
         url: `/artists/${userArtistMovieChoice}/events?app_id=${keyChain.BIT.id}`,
-        responseType: 'application/json',
+        responseType: 'json',
     }).then(response => {
-        console.log(response);
+        BITToUser(response);
         })
         .catch(error => {
-            console.log(error);
+            if(error.response) {
+                console.log('Response error: ' + error.response.status)
+            } else if(error.request) {
+                console.log('Request error: ' + error.request)
+            } else {
+                console.log('Setup Error: ' + error.message)
+            };
+            console.log(error.config);
         });
 };
 
-
+function BITToUser(res) {
+    for(let i = 0; i < res.data.length; i++) {
+        let date = moment(res.data[i].datetime).format('MM/DD/YYYY');
+        console.log(`Venue Name: ${res.data[i].venue.name}`);
+        console.log(`Venue Location: ${res.data[i].venue.city}, ${res.data[i].venue.country}`);
+        console.log(`Date of Event: ${date}`);
+        console.log(` `);
+    }
+};
 
 argCheck();
