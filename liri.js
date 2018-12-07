@@ -22,13 +22,13 @@ function argCheck() {
 function reachOut() {
     switch(userEntertainmentChoice.toUpperCase()) {
         case 'CONCERT-THIS':
-        BITReachOut();
+        APIReachOut('BIT');
         break;
         case 'SPOTIFY-THIS-SONG':
         spotifyReachOut();
         break;
         case 'MOVIE-THIS':
-        OMDBReachOut();
+        APIReachOut('OMDB');
         break;
         default:
         console.log('Your first argument must be "concert-this", "spotify-this-song", or "movie-this"');
@@ -36,14 +36,28 @@ function reachOut() {
     };
 };
 
-function BITReachOut() {
+function APIReachOut(check) {
+    let queryBase = '';
+    let queryURL = '';
+    switch(check) {
+        case 'BIT':
+        console.log('bit');
+        queryBase = `https://rest.bandsintown.com`;
+        queryURL = `/artists/${userArtistMovieChoice}/events?app_id=${keyChain.BIT.id}`;
+        break;
+        case 'OMDB':
+        console.log('omdb');
+        queryBase = '';
+        queryURL = `https://www.omdbapi.com/?apikey=${keyChain.OMDB.id}&t=${userArtistMovieChoice}&type=movie`;
+        break;
+    };
     axios ({
         method: 'get',
-        baseURL: `https://rest.bandsintown.com`,
-        url: `/artists/${userArtistMovieChoice}/events?app_id=${keyChain.BIT.id}`,
+        baseURL: queryBase,
+        url: queryURL,
         responseType: 'json',
     }).then(response => {
-        BITToUser(response);
+        toUser(response);
         })
         .catch(error => {
             if(error.response) {
@@ -57,7 +71,7 @@ function BITReachOut() {
         });
 };
 
-function BITToUser(res) {
+function toUser(res) {
     for(let i = 0; i < res.data.length; i++) {
         let date = moment(res.data[i].datetime).format('MM/DD/YYYY');
         console.log(`Venue Name: ${res.data[i].venue.name}`);
