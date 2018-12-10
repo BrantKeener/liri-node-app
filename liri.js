@@ -1,8 +1,3 @@
-// TO DO: Make sure user inputs data when prompted, otherwise ask again
-// TO DO: Parse through spotify JSON data
-
-// Maybe try json.stringify for spotify return!!!
-// Add inquirer functionality?
 
 // Begin by requiring dotenv
 const env = require('dotenv').config();
@@ -60,7 +55,7 @@ function inquireTitleArtist(res) {
                 name: 'userEntry'
             }
         ]).then(function(response) {
-            reachOut(response.userEntry, 'CONCERT-THIS', res)
+            argCheck(response.userEntry, 'SPOT', res)
         });
         break;
         case 'Look for a movie':
@@ -75,39 +70,121 @@ function inquireTitleArtist(res) {
         });
         break;
     };
-}
+};
 
     // Check to make sure that both arguments have valid inputs. This should be retooled.
 function argCheck(res, abbrev, choice) {
+    let smallRes = res.replace(/\s/g, '+');
     if(res === '') {
-        console.log('\n***\nPlease read the message carefully and try again\n***\n');
+        console.log('\n***\nPlease read the instructions carefully and try again\n***\n');
         inquireTitleArtist(choice);
-    } else {
-        APIReachOut(res, abbrev);
+    } else if(abbrev === 'BIT' || abbrev === 'OMDB') {
+        APIReachOut(smallRes, abbrev);
+    } else if(abbrev === 'SPOT') {
+        spotifyReachOut(smallRes, abbrev)
     };
 };
 
 // This can perform the API call for both BIT and OMDB
-    function APIReachOut(res, check) {
-        let queryBase = '';
-        let queryURL = '';
-        switch(check) {
-            case 'BIT':
-            queryBase = `https://rest.bandsintown.com`;
-            queryURL = `/artists/${res}/events?app_id=${keyChain.BIT.id}`;
-            break;
-            case 'OMDB':
-            queryBase = '';
-            queryURL = `https://www.omdbapi.com/?apikey=${keyChain.OMDB.id}&t=${res}&type=movie`;
-            break;
+function APIReachOut(res, check) {
+    let queryBase = '';
+    let queryURL = '';
+    switch(check) {
+        case 'BIT':
+        queryBase = `https://rest.bandsintown.com`;
+        queryURL = `/artists/${res}/events?app_id=${keyChain.BIT.id}`;
+        break;
+        case 'OMDB':
+        queryBase = '';
+        queryURL = `https://www.omdbapi.com/?apikey=${keyChain.OMDB.id}&t=${res}&type=movie`;
+        break;
+    };
+    axios ({
+        method: 'get',
+        baseURL: queryBase,
+        url: queryURL,
+        responseType: 'json',
+    }).then(response => {
+        toUser(response, check);
+        })
+        .catch(error => {
+            if(error.response) {
+                console.log('Response error: ' + error.response.status)
+            } else if(error.request) {
+                console.log('Request error: ' + error.request)
+            } else {
+                console.log('Setup Error: ' + error.message)
+            };
+            console.log(error.config);
+        });
+};
+
+// OMDB and BIT console.log build
+function toUser(res, check) {
+    let resdat = res.data;
+    if(check === 'BIT') {
+        for(let i = 0; i < resdat.length; i++) {
+            let date = moment(resdat[i].datetime).format('MM/DD/YYYY');
+            console.log(`Venue Name: ${resdat[i].venue.name}`);
+            console.log(`Venue Location: ${resdat[i].venue.city}, ${resdat[i].venue.country}`);
+            console.log(`Date of Event: ${date}\n`);
         };
+    };
+    if(check === 'OMDB') {
+        console.log(`Title: ${resdat.Title}`);
+        console.log(`Year Released: ${resdat.Year}`);
+        console.log(`IMDB Rating: ${resdat.Ratings[0].Value}`);
+        console.log(`Rotten Tomatoes: ${resdat.Ratings[1].Value}`);
+        console.log(`Produced in: ${resdat.Country}`);
+        console.log(`Available Languages: ${resdat.Language}`);
+        console.log(`Plot: ${resdat.Plot}`);
+        console.log(`Actors: ${resdat.Actors}`);
+    };
+    if(check === 'SPOT') {
+        let resTracks = res.data.tracks;
+        for(let i = 0; i < resTracks.items.length; i++) {
+            let resItems = resTracks.items[i];
+            console.log(`\nArtist Name: ${resItems.album.artists[0].name}`);
+            console.log(`Song Name: ${resItems.name}`);
+            console.log(`Preview Link: ${resItems.preview_url}`);
+            console.log(`Album Name: ${resItems.album.name}`);
+        };
+    };
+    server.close(function() {
+        process.exit();
+    });
+};
+
+    // Not working yet. Think about combining all three API calls
+function spotifyReachOut(res, abbrev) {
+    let client_id = keyChain.spotify.id;
+    let client_secret = keyChain.spotify.secret;
+    axios ({
+        url: 'https://accounts.spotify.com/api/token',
+        method: 'post',
+        params: {
+            grant_type: 'client_credentials'
+        },
+        headers: {
+            'Accept' : 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        auth: {
+            username: client_id,
+            password: client_secret
+        }
+    }).then(response => {
         axios ({
+            baseURL: `https://api.spotify.com`,
+            url: `/v1/search/?q=${res}&type=track`,
             method: 'get',
-            baseURL: queryBase,
-            url: queryURL,
-            responseType: 'json',
+            headers: {
+                'Authorization': 'Bearer ' + response.data.access_token,
+                'Accept' : 'application/json',
+                'Content-Type' : 'application/x-www-form-urlencoded'
+            },
         }).then(response => {
-            toUser(response, check);
+            toUser(response, abbrev);
             })
             .catch(error => {
                 if(error.response) {
@@ -119,99 +196,7 @@ function argCheck(res, abbrev, choice) {
                 };
                 console.log(error.config);
             });
-    };
-
-    // OMDB and BIT console.log build
-    function toUser(res, check) {
-        let resdat = res.data;
-        if(check === 'BIT') {
-            for(let i = 0; i < resdat.length; i++) {
-                let date = moment(resdat[i].datetime).format('MM/DD/YYYY');
-                console.log(`Venue Name: ${resdat[i].venue.name}`);
-                console.log(`Venue Location: ${resdat[i].venue.city}, ${resdat[i].venue.country}`);
-                console.log(`Date of Event: ${date}\n`);
-            };
-        };
-        if(check === 'OMDB') {
-            console.log(`Title: ${resdat.Title}`);
-            console.log(`Year Released: ${resdat.Year}`);
-            console.log(`IMDB Rating: ${resdat.Ratings[0].Value}`);
-            console.log(`Rotten Tomatoes: ${resdat.Ratings[1].Value}`);
-            console.log(`Produced in: ${resdat.Country}`);
-            console.log(`Available Languages: ${resdat.Language}`);
-            console.log(`Plot: ${resdat.Plot}`);
-            console.log(`Actors: ${resdat.Actors}`);
-        };
-        server.close(function() {
-            process.exit();
-        });
-    };
-
-    // Not working yet. Think about combining all three API calls
-    let options = {
-        hostname: 'accounts.spo9tify'
-    };
-
-    function spotifyReachOut() {
-        let client_id = keyChain.spotify.id;
-        let client_secret = keyChain.spotify.secret;
-        axios ({
-            url: 'https://accounts.spotify.com/api/token',
-            method: 'post',
-            params: {
-                grant_type: 'client_credentials'
-            },
-            headers: {
-                'Accept' : 'application/json',
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            auth: {
-                username: client_id,
-                password: client_secret
-            }
-        }).then(response => {
-            axios ({
-                baseURL: `https://api.spotify.com`,
-                url: `/v1/search/?q=${userArtistMovieChoice}&type=track`,
-                method: 'get',
-                headers: {
-                    'Authorization': 'Bearer ' + response.data.access_token,
-                    'Accept' : 'application/json',
-                    'Content-Type' : 'application/x-www-form-urlencoded'
-                },
-            }).then(response => {
-                console.log(JSON.stringify(response.data.tracks.items, null, 2));
-                })
-                .catch(error => {
-                    if(error.response) {
-                        console.log('Response error: ' + error.response.status)
-                    } else if(error.request) {
-                        console.log('Request error: ' + error.request)
-                    } else {
-                        console.log('Setup Error: ' + error.message)
-                    };
-                    console.log(error.config);
-                });
-        }).catch(error => {
-            console.log('This Error' + error);
-        });
-    };
-
-
-
-    //     axios.post(authOptions, function(error, response, body) {
-    //         if(!error && response.statusCode === 200) {
-    //             let token = body.access_token;
-    //             let options = {
-    //                 baseURL: 'https://api.spotify.com/',
-    //                 url: `v1/search/?q=track:${userArtistMovieChoice}&type-track`,
-    //                 headers: {
-    //                     'Autorization': `Bearer ${token}`
-    //                 },
-    //                 json: true
-    //             };
-    //         };
-    //     }).catch(error => {
-    //         console.log(error);
-    //     });
-    // };
+    }).catch(error => {
+        console.log('This Error' + error);
+    });
+};
