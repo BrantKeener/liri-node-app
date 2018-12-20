@@ -1,3 +1,7 @@
+// TO-DO log appropriate data to log.txt with headers
+// Handle events when user does not enter a band, song, or movie
+// Handle events when user's input does not return a valid datum
+// Add 'do-what-it-says' functionality
 
 // Begin by requiring dotenv
 const env = require('dotenv').config();
@@ -7,14 +11,9 @@ const moment = require('moment');
 const http = require('http');
 const inquirer = require('inquirer');
 const port = 80;
-const userEntertainmentChoice = process.argv[2];
-const userArtistMovieChoice = process.argv[3];
 
 // Setup the server so we can test our Oauth api locally
-let server = http.createServer(function(request, response) {
-    response.writeHead(200, {'content-type': 'text/plain'});
-    response.write('Hello World');
-    response.end();
+let server = http.createServer(function() {
 }).listen(port);
 
 // Inquirer setup for easier access
@@ -72,16 +71,20 @@ function inquireTitleArtist(res) {
     };
 };
 
-    // Check to make sure that both arguments have valid inputs. This should be retooled.
+    // Check to make sure that both arguments have valid inputs.
 function argCheck(res, abbrev, choice) {
-    let smallRes = res.replace(/\s/g, '+');
-    if(res === '') {
-        console.log('\n***\nPlease read the instructions carefully and try again\n***\n');
+    if(res === '' && abbrev === 'OMDB') {
+        APIReachOut('Mr.+Nobody', abbrev);
+    } else if(res === '' && abbrev === 'BIT') {
+        console.log('\n====\nPlease enter a band or artist name\n====\n');
+        console.log(res);
         inquireTitleArtist(choice);
-    } else if(abbrev === 'BIT' || abbrev === 'OMDB') {
-        APIReachOut(smallRes, abbrev);
+    } else if(res !== '' && abbrev === 'BIT' || res !== '' && abbrev === 'OMDB') {
+        let plusRes = res.replace(/\s/g, '+');
+        APIReachOut(plusRes, abbrev);
     } else if(abbrev === 'SPOT') {
-        spotifyReachOut(smallRes, abbrev)
+        let plusRes = res.replace(/\s/g, '+');
+        spotifyReachOut(plusRes, abbrev)
     };
 };
 
@@ -119,44 +122,8 @@ function APIReachOut(res, check) {
         });
 };
 
-// OMDB and BIT console.log build
-function toUser(res, check) {
-    let resdat = res.data;
-    if(check === 'BIT') {
-        for(let i = 0; i < resdat.length; i++) {
-            let date = moment(resdat[i].datetime).format('MM/DD/YYYY');
-            console.log(`Venue Name: ${resdat[i].venue.name}`);
-            console.log(`Venue Location: ${resdat[i].venue.city}, ${resdat[i].venue.country}`);
-            console.log(`Date of Event: ${date}\n`);
-        };
-    };
-    if(check === 'OMDB') {
-        console.log(`Title: ${resdat.Title}`);
-        console.log(`Year Released: ${resdat.Year}`);
-        console.log(`IMDB Rating: ${resdat.Ratings[0].Value}`);
-        console.log(`Rotten Tomatoes: ${resdat.Ratings[1].Value}`);
-        console.log(`Produced in: ${resdat.Country}`);
-        console.log(`Available Languages: ${resdat.Language}`);
-        console.log(`Plot: ${resdat.Plot}`);
-        console.log(`Actors: ${resdat.Actors}`);
-    };
-    if(check === 'SPOT') {
-        let resTracks = res.data.tracks;
-        for(let i = 0; i < resTracks.items.length; i++) {
-            let resItems = resTracks.items[i];
-            console.log(`\nArtist Name: ${resItems.album.artists[0].name}`);
-            console.log(`Song Name: ${resItems.name}`);
-            console.log(`Preview Link: ${resItems.preview_url}`);
-            console.log(`Album Name: ${resItems.album.name}`);
-        };
-    };
-    server.close(function() {
-        process.exit();
-    });
-};
-
-    // Not working yet. Think about combining all three API calls
-function spotifyReachOut(res, abbrev) {
+// Spotify API call with Ace of Base default
+function spotifyReachOut(res, abbrev, name) {
     let client_id = keyChain.spotify.id;
     let client_secret = keyChain.spotify.secret;
     axios ({
@@ -184,7 +151,12 @@ function spotifyReachOut(res, abbrev) {
                 'Content-Type' : 'application/x-www-form-urlencoded'
             },
         }).then(response => {
-            toUser(response, abbrev);
+            let noRes = response.data.tracks.total;
+            if(noRes === 0) {
+                spotifyReachOut('The Sign', abbrev, 'Ace of Base');
+            } else {
+                toUser(response, abbrev, name);
+            };
             })
             .catch(error => {
                 if(error.response) {
@@ -198,5 +170,53 @@ function spotifyReachOut(res, abbrev) {
             });
     }).catch(error => {
         console.log('This Error' + error);
+    });
+};
+
+// OMDB and BIT console.log build
+function toUser(res, check, name) {
+    let resdat = res.data;
+    if(check === 'BIT') {
+        for(let i = 0; i < resdat.length; i++) {
+            let date = moment(resdat[i].datetime).format('MM/DD/YYYY');
+            console.log(`Venue Name: ${resdat[i].venue.name}`);
+            console.log(`Venue Location: ${resdat[i].venue.city}, ${resdat[i].venue.country}`);
+            console.log(`Date of Event: ${date}\n`);
+        };
+    };
+    if(check === 'OMDB') {
+        console.log(`Title: ${resdat.Title}`);
+        console.log(`Year Released: ${resdat.Year}`);
+        console.log(`IMDB Rating: ${resdat.Ratings[0].Value}`);
+        console.log(`Rotten Tomatoes: ${resdat.Ratings[1].Value}`);
+        console.log(`Produced in: ${resdat.Country}`);
+        console.log(`Available Languages: ${resdat.Language}`);
+        console.log(`Plot: ${resdat.Plot}`);
+        console.log(`Actors: ${resdat.Actors}`);
+    };
+    if(check === 'SPOT') {
+        let resTracks = resdat.tracks;
+        if(name === undefined) {
+            for(let i = 0; i < resTracks.items.length; i++) {
+                let resItems = resTracks.items[i];
+                console.log(`\nArtist Name: ${resItems.album.artists[0].name}`);
+                console.log(`Song Name: ${resItems.name}`);
+                console.log(`Preview Link: ${resItems.preview_url}`);
+                console.log(`Album Name: ${resItems.album.name}`);
+            };
+        } else {
+            for(let i = 0; i < resTracks.items.length; i++) {
+                let resItems = resTracks.items[i];
+                if(resItems.album.artists[0].name === 'Ace of Base') {
+                    console.log(`\nArtist Name: ${resItems.album.artists[0].name}`);
+                    console.log(`Song Name: ${resItems.name}`);
+                    console.log(`Preview Link: ${resItems.preview_url}`);
+                    console.log(`Album Name: ${resItems.album.name}`);
+                };
+            };
+        };
+    };
+    server.close(function() {
+        process.exit();
     });
 };
