@@ -19,18 +19,20 @@ let server = http.createServer(function() {
 }).listen(port);
 
 // Inquirer setup for easier access
-inquirer.prompt([
-    {
-       type: 'list',
-       message: 'What would you like to look for\n?',
-       choices: ['Look for a concert', 'Look for a song', 'Look for a movie'],
-       name: 'choice'
-    },
+(function initialInquiry() {
+    inquirer.prompt([
+        {
+        type: 'list',
+        message: 'What would you like to look for\n?',
+        choices: ['Look for a concert', 'Look for a song', 'Look for a movie'],
+        name: 'choice'
+        },
 
-    // The user is instructed to enter particular data based on what option they chose in the 'choice' prompt
-]).then(function(response) {
-   inquireTitleArtist(response);
-});
+        // The user is instructed to enter particular data based on what option they chose in the 'choice' prompt
+    ]).then(function(response) {
+    inquireTitleArtist(response);
+    });
+})();
 
 // Evaluates what user is looking for, and asks them to enter appropriate information to continue their search
 function inquireTitleArtist(res) {
@@ -111,7 +113,12 @@ function APIReachOut(res, check) {
         url: queryURL,
         responseType: 'json',
     }).then(response => {
-        toUser(response, check);
+        if(response.data.Error === 'Movie not found!') {
+            console.log(`${divider}${response.data.Error}\nPlease try again.${divider}`);
+            inquireTitleArtist({choice: 'Look for a movie'});
+        } else {
+            toUser(response, check);
+        };
         })
         .catch(error => {
             if(error.response) {
