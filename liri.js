@@ -10,7 +10,9 @@ const axios = require('axios');
 const moment = require('moment');
 const http = require('http');
 const inquirer = require('inquirer');
+const fs = require('fs');
 const port = 80;
+const divider = '\n==============================\n';
 
 // Setup the server so we can test our Oauth api locally
 let server = http.createServer(function() {
@@ -32,7 +34,6 @@ inquirer.prompt([
 
 // Evaluates what user is looking for, and asks them to enter appropriate information to continue their search
 function inquireTitleArtist(res) {
-    console.log(res);
     let choice = res.choice;
     switch(choice) {
         case 'Look for a concert':
@@ -76,15 +77,17 @@ function argCheck(res, abbrev, choice) {
     if(res === '' && abbrev === 'OMDB') {
         APIReachOut('Mr.+Nobody', abbrev);
     } else if(res === '' && abbrev === 'BIT') {
-        console.log('\n====\nPlease enter a band or artist name\n====\n');
+        console.log(`${divider}       **Warning**\nYou must enter a band or artist${divider}`);
         console.log(res);
         inquireTitleArtist(choice);
     } else if(res !== '' && abbrev === 'BIT' || res !== '' && abbrev === 'OMDB') {
         let plusRes = res.replace(/\s/g, '+');
         APIReachOut(plusRes, abbrev);
-    } else if(abbrev === 'SPOT') {
+    } else if(abbrev === 'SPOT' && res !== '') {
         let plusRes = res.replace(/\s/g, '+');
-        spotifyReachOut(plusRes, abbrev)
+        particularArtist(plusRes, abbrev);
+    } else if(abbrev === 'SPOT' && res === '') {
+        spotifyReachOut(res, abbrev);
     };
 };
 
@@ -120,6 +123,32 @@ function APIReachOut(res, check) {
             };
             console.log(error.config);
         });
+};
+
+// Giving the user the option to limit to a particular performer
+function particularArtist(res, abbrev) {
+    inquirer.prompt([
+        {
+            type: 'list',
+            message: 'Would you like to search for a particular artist or band?',
+            choices: ['Yes', 'No'],
+            name: 'bandyesorno'
+        }
+    ]).then(response => {
+        if(response.bandyesorno === 'Yes') {
+            inquirer.prompt([
+                {
+                    input: 'input',
+                    message: 'Please enter the band or artist name:',
+                    name: 'artistname'
+                }
+            ]).then(response => {
+                spotifyReachOut(res, abbrev, response.artistname);
+            });
+        } else {
+            spotifyReachOut(res, abbrev);
+        };
+    });
 };
 
 // Spotify API call with Ace of Base default
@@ -160,13 +189,12 @@ function spotifyReachOut(res, abbrev, name) {
             })
             .catch(error => {
                 if(error.response) {
-                    console.log('Response error: ' + error.response.status)
+                    spotifyReachOut('The+Sign', abbrev, 'Ace of Base');
                 } else if(error.request) {
                     console.log('Request error: ' + error.request)
                 } else {
                     console.log('Setup Error: ' + error.message)
                 };
-                console.log(error.config);
             });
     }).catch(error => {
         console.log('This Error' + error);
@@ -196,7 +224,13 @@ function toUser(res, check, name) {
     };
     if(check === 'SPOT') {
         let resTracks = resdat.tracks;
-        if(name === undefined) {
+        let nameArray = [];
+        for(let i = 0; i < resTracks.items.length; i++) {
+            let resItems = resTracks.items[i];
+            nameArray.push(resItems.album.artists[0].name);
+        };
+        if(name === undefined || nameArray.indexOf(name) === -1) {
+            console.log(`${divider}Band or artist is either not recognized, or no band/artist was provided${divider}`)
             for(let i = 0; i < resTracks.items.length; i++) {
                 let resItems = resTracks.items[i];
                 console.log(`\nArtist Name: ${resItems.album.artists[0].name}`);
@@ -206,8 +240,8 @@ function toUser(res, check, name) {
             };
         } else {
             for(let i = 0; i < resTracks.items.length; i++) {
-                let resItems = resTracks.items[i];
-                if(resItems.album.artists[0].name === 'Ace of Base') {
+                let resItems = resTracks.items[i]
+                if(resItems.album.artists[0].name === name) {
                     console.log(`\nArtist Name: ${resItems.album.artists[0].name}`);
                     console.log(`Song Name: ${resItems.name}`);
                     console.log(`Preview Link: ${resItems.preview_url}`);
