@@ -1,6 +1,4 @@
 // TO-DO log appropriate data to log.txt with headers
-// Handle events when user does not enter a band, song, or movie
-// Handle events when user's input does not return a valid datum
 // Add 'do-what-it-says' functionality
 
 // Begin by requiring dotenv
@@ -20,6 +18,7 @@ let server = http.createServer(function() {
 
 // Inquirer setup for easier access
 (function initialInquiry() {
+    console.log(`${divider}If you have any questions, please check the Readme for more information${divider}`);
     inquirer.prompt([
         {
         type: 'list',
@@ -77,7 +76,7 @@ function inquireTitleArtist(res) {
     // Check to make sure that both arguments have valid inputs.
 function argCheck(res, abbrev, choice) {
     if(res === '' && abbrev === 'OMDB') {
-        APIReachOut('Mr.+Nobody', abbrev);
+        APIReachOut('Mr.+Nobody', abbrev, 'Mr. Nobody');
     } else if(res === '' && abbrev === 'BIT') {
         console.log(`${divider}       **Warning**\nYou must enter a band or artist${divider}`);
         console.log(res);
@@ -94,7 +93,7 @@ function argCheck(res, abbrev, choice) {
 };
 
 // This can perform the API call for both BIT and OMDB
-function APIReachOut(res, check) {
+function APIReachOut(res, check, name) {
     let queryBase = '';
     let queryURL = '';
     switch(check) {
@@ -117,7 +116,7 @@ function APIReachOut(res, check) {
             console.log(`${divider}${response.data.Error}\nPlease try again.${divider}`);
             inquireTitleArtist({choice: 'Look for a movie'});
         } else {
-            toUser(response, check);
+            toUser(response, check, name);
         };
         })
         .catch(error => {
@@ -212,6 +211,17 @@ function spotifyReachOut(res, abbrev, name) {
 function toUser(res, check, name) {
     let resdat = res.data;
     if(check === 'BIT') {
+        if(resdat.errorMessage === '[NotFound] The artist was not found' || resdat.length === 0) {
+            if(resdat.errorMessage === '[NotFound] The artist was not found') {
+                console.log(`${divider}Band or artist is either not recognized, or they are not currently touring${divider}`);
+                inquireTitleArtist({choice: 'Look for a concert'});
+                return res;
+            } else if(resdat.length === 0) {
+                console.log(`${divider}That artist or band is not currently touring${divider}`);
+                serverClose();
+                return res;
+            };
+        };
         for(let i = 0; i < resdat.length; i++) {
             let date = moment(resdat[i].datetime).format('MM/DD/YYYY');
             console.log(`Venue Name: ${resdat[i].venue.name}`);
@@ -220,6 +230,9 @@ function toUser(res, check, name) {
         };
     };
     if(check === 'OMDB') {
+        if(name === 'Mr. Nobody') {
+            console.log(`${divider}No movie title provided, perhaps you would like to see the following movie${divider}`)
+        };
         console.log(`Title: ${resdat.Title}`);
         console.log(`Year Released: ${resdat.Year}`);
         console.log(`IMDB Rating: ${resdat.Ratings[0].Value}`);
@@ -237,7 +250,7 @@ function toUser(res, check, name) {
             nameArray.push(resItems.album.artists[0].name);
         };
         if(name === undefined || nameArray.indexOf(name) === -1) {
-            console.log(`${divider}Band or artist is either not recognized, or no band/artist was provided${divider}`)
+            console.log(`${divider}Band or artist is either not recognized, or no band/artist was provided${divider}`);
             for(let i = 0; i < resTracks.items.length; i++) {
                 let resItems = resTracks.items[i];
                 console.log(`\nArtist Name: ${resItems.album.artists[0].name}`);
@@ -249,6 +262,9 @@ function toUser(res, check, name) {
             for(let i = 0; i < resTracks.items.length; i++) {
                 let resItems = resTracks.items[i]
                 if(resItems.album.artists[0].name === name) {
+                    if(name === 'Ace of Base') {
+                        console.log(`${divider}Song title was either not recognized, or no song title was provided\nCheck out this song from Ace of Base${divider}`);
+                    };
                     console.log(`\nArtist Name: ${resItems.album.artists[0].name}`);
                     console.log(`Song Name: ${resItems.name}`);
                     console.log(`Preview Link: ${resItems.preview_url}`);
@@ -257,6 +273,10 @@ function toUser(res, check, name) {
             };
         };
     };
+    serverClose();
+};
+
+function serverClose() {
     server.close(function() {
         process.exit();
     });
