@@ -23,7 +23,7 @@ let server = http.createServer(function() {
         {
         type: 'list',
         message: 'What would you like to look for\n?',
-        choices: ['Look for a concert', 'Look for a song', 'Look for a movie'],
+        choices: ['concert-this', 'spotify-this-song', 'movie-this', 'do-what-it-says'],
         name: 'choice'
         },
 
@@ -37,7 +37,7 @@ let server = http.createServer(function() {
 function inquireTitleArtist(res) {
     let choice = res.choice;
     switch(choice) {
-        case 'Look for a concert':
+        case 'concert-this':
         inquirer.prompt([
             {
                 type: 'input',
@@ -48,7 +48,7 @@ function inquireTitleArtist(res) {
             argCheck(response.userEntry, 'BIT', res);
         });
         break;
-        case 'Look for a song':
+        case 'spotify-this-song':
         inquirer.prompt([
             {
                 type: 'input',
@@ -59,7 +59,7 @@ function inquireTitleArtist(res) {
             argCheck(response.userEntry, 'SPOT', res)
         });
         break;
-        case 'Look for a movie':
+        case 'movie-this':
         inquirer.prompt([
             {
                 type: 'input',
@@ -70,6 +70,7 @@ function inquireTitleArtist(res) {
             argCheck(response.userEntry, 'OMDB', res)
         });
         break;
+        
     };
 };
 
@@ -114,7 +115,7 @@ function APIReachOut(res, check, name) {
     }).then(response => {
         if(response.data.Error === 'Movie not found!') {
             console.log(`${divider}${response.data.Error}\nPlease try again.${divider}`);
-            inquireTitleArtist({choice: 'Look for a movie'});
+            inquireTitleArtist({choice: 'movie-this'});
         } else {
             toUser(response, check, name);
         };
@@ -214,7 +215,7 @@ function toUser(res, check, name) {
         if(resdat.errorMessage === '[NotFound] The artist was not found' || resdat.length === 0) {
             if(resdat.errorMessage === '[NotFound] The artist was not found') {
                 console.log(`${divider}Band or artist is either not recognized, or they are not currently touring${divider}`);
-                inquireTitleArtist({choice: 'Look for a concert'});
+                inquireTitleArtist({choice: 'concert-this'});
                 return res;
             } else if(resdat.length === 0) {
                 console.log(`${divider}That artist or band is not currently touring${divider}`);
