@@ -1,4 +1,5 @@
 // TO-DO log appropriate data to log.txt with headers
+// fs.appendFile does honor the markdown!
 
 // Begin by requiring dotenv
 const env = require('dotenv').config();
@@ -181,7 +182,7 @@ function APIReachOut(res, check, name) {
             if(error.response) {
                 console.log('Response error: ' + error.response.status)
             } else if(error.request) {
-                console.log('Request error: ' + error.request)
+                console.log('Request error: ' + error.request);
             } else {
                 console.log('Setup Error: ' + error.message)
             };
@@ -308,14 +309,14 @@ function toUser(res, check, name) {
         let language = (resdat.Language) ? resdat.Language : nodat; 
         let plot = (resdat.Plot) ? resdat.Plot : nodat;
         let actors = (resdat.Actors) ? resdat.Actors : nodat;
-        console.log(title);
-        console.log(year);
-        console.log(ratingIMDB);
-        console.log(ratingRotten);
-        console.log(country);
-        console.log(language);
-        console.log(plot);
-        console.log(actors);
+        console.log(`Title: ${title}`);
+        console.log(`Year: ${year}`);
+        console.log(`IMDB Rating ${ratingIMDB}`);
+        console.log(`Rotten Tomatoes Rating: ${ratingRotten}`);
+        console.log(`Produced in: ${country}`);
+        console.log(`Available Languages: ${language}`);
+        console.log(`Plot: ${plot}`);
+        console.log(`Actors: ${actors}`);
         logSheet.year = year;
         logSheet.ratingIMDB = ratingIMDB;
         logSheet.ratingRotten = ratingRotten;
@@ -372,16 +373,23 @@ function toUser(res, check, name) {
             };
         };
     };
-    serverClose();
     logSearches();
+};
+
+function logSearches() {
+    console.log('I work!');
+    fs.appendFile("log.txt", 'Hi!\nHello!', function(err) {
+        if (err) {
+        console.log(err);
+        }
+        else {
+        serverClose();
+        }
+    });
 };
 
 function serverClose() {
     server.close(function() {
         process.exit();
     });
-};
-
-function logSearches() {
-    console.log(logSheet);
 };
