@@ -1,5 +1,5 @@
 // TO-DO log appropriate data to log.txt with headers
-// fs.appendFile does honor the markdown!
+// Maybe use fs.writeStream to write the large files
 
 // Begin by requiring dotenv
 const env = require('dotenv').config();
@@ -18,7 +18,7 @@ const divider = '\n==============================\n';
  */
 function LogBuild(entry, searchChoice) 
     {
-    this.divider = `==============================`;
+    this.divider = `\n==============================\n`;
     this.searchChoice = searchChoice
     this.entry = entry
     };
@@ -269,7 +269,6 @@ function spotifyReachOut(res, abbrev, name) {
 
 // OMDB and BIT console.log build
 function toUser(res, check, name) {
-    console.log(logSheet);
     let nodat = `No Data Returned`;
     let resdat = res.data;
     if(check === 'BIT') {
@@ -281,7 +280,7 @@ function toUser(res, check, name) {
             } else if(resdat.length === 0) {
                 console.log(`${divider}That artist or band is not currently touring${divider}`);
                 logSheet.error = 'That artist or band is not currently touring';
-                serverClose();
+                logVariableset();
                 return res;
             };
         };
@@ -373,19 +372,85 @@ function toUser(res, check, name) {
             };
         };
     };
-    logSearches();
+    logVariableset();
 };
 
-function logSearches() {
-    console.log('I work!');
-    fs.appendFile("log.txt", 'Hi!\nHello!', function(err) {
-        if (err) {
-        console.log(err);
-        }
-        else {
+function logVariableset() {
+    console.log(logSheet);
+    let ls = logSheet;
+    let logEntryOMDB = `${ls.divider}
+    API Called: ${ls.searchChoice}
+    User Search: ${ls.entry}
+    Year: ${ls.year}
+    IMDB Rating: ${ls.ratingIMDB}
+    Rotten Tomatoe Rating: ${ls.ratingRotten}
+    Production Country: ${ls.country}
+    Languages: ${ls.language}
+    Plot: ${ls.plot}
+    Actors: ${ls.actors}\n`;
+    let logEntryBIT = `${ls.divider}
+    API Called: ${ls.searchChoice}
+    User Search: ${ls.entry}\n`
+    let logEntrySPOT = `${ls.divider}
+    API Called: ${ls.searchChoice}
+    User Search: ${ls.entry}\n`;
+    if(ls.searchChoice === 'OMDB Movie Database' || ls.searchChoice === 'OMDB Movie Database/random') {
+        omdbAppendFile(logEntryOMDB);
+    };
+    if(ls.searchChoice === 'Bandsintown' || ls.searchChoice === 'Bandsintown/random') {
+        bitAppendFile(logEntryBIT);
+    };
+    if(ls.searchChoice === 'Spotify' || ls.searchChoice === 'Spotify/random') {
+        spotAppendFile(logEntrySPOT);
+    }
+};
+
+function omdbAppendFile(log) {
+    fs.appendFile('log.txt', log, (err) => {
+        if(err) throw err;
         serverClose();
-        }
     });
+};
+
+function bitAppendFile(log) {
+    let length = ((Object.keys(logSheet).length - 3) / 3);
+    if(length < 1) {
+        fs.appendFile('log.txt', log, (err) => {if(err) throw err});
+        fs.appendFile('log.txt', `${divider}That artist or band is not currently touring${divider}`, (err) => {
+            if(err) throw err;
+        });
+    } else {
+        fs.appendFile('log.txt', log, (err) => {
+            if(err) throw err;
+            for(let i = 0; i < length; i++) {
+                let venueName = '\nVenue Name: ' + logSheet[`vName${i}`] + '\n';
+                let venueLocation = 'Venue Location: ' + logSheet[`vLoc${i}`] + '\n';
+                let venueDate = 'Date: ' + logSheet[`date${i}`] + '\n'
+                fs.appendFileSync('log.txt', venueName);
+                fs.appendFileSync('log.txt', venueLocation);
+                fs.appendFileSync('log.txt', venueDate);
+            };
+        });
+    };
+    setTimeout(serverClose, 100);
+};
+
+function spotAppendFile(log) {
+    let length = ((Object.keys(logSheet).length - 3) / 4);
+    fs.appendFile('log.txt', log, (err) => {
+        if(err) throw err;
+        for(let i = 0; i < length; i++) {
+            let artistName = '\nArtist Name: ' + logSheet[`artist${i}`] + '\n';
+            let songName = 'Song Name: ' + logSheet[`song${i}`] + '\n';
+            let preview = 'Preview: ' + logSheet[`preview${i}`] + '\n';
+            let album = 'Album: ' + logSheet[`album${i}`] + '\n';
+            fs.appendFileSync('log.txt', artistName);
+            fs.appendFileSync('log.txt', songName);
+            fs.appendFileSync('log.txt', preview);
+            fs.appendFileSync('log.txt', album);
+        };
+    });
+    setTimeout(serverClose, 100);
 };
 
 function serverClose() {
