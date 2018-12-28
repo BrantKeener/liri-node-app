@@ -24,7 +24,7 @@ Standard
 
 ## Demo
 
-To view the demonstration video, please go to the "video" file at the top of this repository, and download the video.
+To view the demonstration video, please go to https://brantkeener.github.io/Backend-Demos/
 
 ## Tech/framework Used
 
