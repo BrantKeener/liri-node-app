@@ -1,5 +1,4 @@
-// TO-DO log appropriate data to log.txt with headers
-// Maybe use fs.writeStream to write the large files
+// TODO add to portfolio
 
 // Begin by requiring dotenv
 const env = require('dotenv').config();
@@ -376,7 +375,6 @@ function toUser(res, check, name) {
 };
 
 function logVariableset() {
-    console.log(logSheet);
     let ls = logSheet;
     let logEntryOMDB = `${ls.divider}
     API Called: ${ls.searchChoice}
