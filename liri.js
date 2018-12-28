@@ -414,7 +414,7 @@ function omdbAppendFile(log) {
 function bitAppendFile(log) {
     let length = ((Object.keys(logSheet).length - 3) / 3);
     if(length < 1) {
-        fs.appendFile('log.txt', log, (err) => {if(err) throw err});
+        fs.appendFileSync('log.txt', log);
         fs.appendFile('log.txt', `${divider}That artist or band is not currently touring${divider}`, (err) => {
             if(err) throw err;
         });
