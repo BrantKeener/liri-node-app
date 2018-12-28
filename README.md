@@ -22,9 +22,10 @@ Everything works well, except for logging the data.
 
 Standard
 
-## Screenshots
+## Demo
 
-Screenshots will go here.
+The following video demonstrates how this app works:
+![Demo Video](/video/Liri-Bot Demonstration_Medium.mp4)
 
 ## Tech/framework Used
 
