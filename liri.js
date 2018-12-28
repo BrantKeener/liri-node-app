@@ -441,10 +441,10 @@ function spotAppendFile(log) {
     fs.appendFile('log.txt', log, (err) => {
         if(err) throw err;
         if(Object.keys(logSheet).length < 8) {
-            let artistName = '\nArtist Name: ' + logSheet[`artist`] + '\n';
-            let songName = 'Song Name: ' + logSheet[`song`] + '\n';
-            let preview = 'Preview: ' + logSheet[`preview`] + '\n';
-            let album = 'Album: ' + logSheet[`album`] + '\n';
+            let artistName = '\nArtist Name: ' + logSheet[`artist0`] + '\n';
+            let songName = 'Song Name: ' + logSheet[`song0`] + '\n';
+            let preview = 'Preview: ' + logSheet[`preview0`] + '\n';
+            let album = 'Album: ' + logSheet[`album0`] + '\n';
             fs.appendFileSync('log.txt', artistName);
             fs.appendFileSync('log.txt', songName);
             fs.appendFileSync('log.txt', preview);
