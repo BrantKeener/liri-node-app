@@ -435,18 +435,30 @@ function bitAppendFile(log) {
 };
 
 function spotAppendFile(log) {
+    console.log(Object.keys(logSheet).length);
     let length = ((Object.keys(logSheet).length - 3) / 4);
     fs.appendFile('log.txt', log, (err) => {
         if(err) throw err;
-        for(let i = 0; i < length; i++) {
-            let artistName = '\nArtist Name: ' + logSheet[`artist${i}`] + '\n';
-            let songName = 'Song Name: ' + logSheet[`song${i}`] + '\n';
-            let preview = 'Preview: ' + logSheet[`preview${i}`] + '\n';
-            let album = 'Album: ' + logSheet[`album${i}`] + '\n';
+        if(Object.keys(logSheet.length < 8)) {
+            let artistName = '\nArtist Name: ' + logSheet[`artist`] + '\n';
+            let songName = 'Song Name: ' + logSheet[`song`] + '\n';
+            let preview = 'Preview: ' + logSheet[`preview`] + '\n';
+            let album = 'Album: ' + logSheet[`album`] + '\n';
             fs.appendFileSync('log.txt', artistName);
             fs.appendFileSync('log.txt', songName);
             fs.appendFileSync('log.txt', preview);
             fs.appendFileSync('log.txt', album);
+        } else {
+            for(let i = 0; i < length; i++) {
+                let artistName = '\nArtist Name: ' + logSheet[`artist${i}`] + '\n';
+                let songName = 'Song Name: ' + logSheet[`song${i}`] + '\n';
+                let preview = 'Preview: ' + logSheet[`preview${i}`] + '\n';
+                let album = 'Album: ' + logSheet[`album${i}`] + '\n';
+                fs.appendFileSync('log.txt', artistName);
+                fs.appendFileSync('log.txt', songName);
+                fs.appendFileSync('log.txt', preview);
+                fs.appendFileSync('log.txt', album);
+            };
         };
     });
     setTimeout(serverClose, 100);
