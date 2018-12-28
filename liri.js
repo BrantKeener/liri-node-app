@@ -208,8 +208,8 @@ function particularArtist(res, abbrev) {
                     name: 'artistname'
                 }
             ]).then(response => {
-                spotifyReachOut(res, abbrev, response.artistname);
                 logSheet.artist = response.artistname;
+                spotifyReachOut(res, abbrev, response.artistname);
             });
         } else {
             spotifyReachOut(res, abbrev);
@@ -349,8 +349,9 @@ function toUser(res, check, name) {
                 logSheet[`album${i}`] = album;
             };
         } else {
+            let x = 0;
             for(let i = 0; i < resTracks.items.length; i++) {
-                let resItems = resTracks.items[i]
+                let resItems = resTracks.items[i];
                 if(resItems.album.artists[0].name === name) {
                     if(name === 'Ace of Base') {
                         console.log(`${divider}Song title was either not recognized, or no song title was provided\nCheck out this song from Ace of Base${divider}`);
@@ -364,10 +365,11 @@ function toUser(res, check, name) {
                     console.log(`Song Name: ${song}`);
                     console.log(`Preview Link: ${preview}`);
                     console.log(`Album Name: ${album}`);
-                    logSheet.artist = artist;
-                    logSheet.song = song;
-                    logSheet.preview = preview;
-                    logSheet.album = album;
+                    logSheet[`artist${x}`] = artist;
+                    logSheet[`song${x}`] = song;
+                    logSheet[`preview${x}`] = preview;
+                    logSheet[`album${x}`] = album;
+                    x++;
                 };
             };
         };
@@ -435,11 +437,13 @@ function bitAppendFile(log) {
 };
 
 function spotAppendFile(log) {
-    console.log(Object.keys(logSheet).length);
-    let length = ((Object.keys(logSheet).length - 3) / 4);
+    let length = (Math.floor((Object.keys(logSheet).length - 3) / 4));
+    console.log((Object.keys(logSheet).length));
+    console.log(length);
+    console.log(Object.keys(logSheet));
     fs.appendFile('log.txt', log, (err) => {
         if(err) throw err;
-        if(Object.keys(logSheet.length < 8)) {
+        if(Object.keys(logSheet).length < 8) {
             let artistName = '\nArtist Name: ' + logSheet[`artist`] + '\n';
             let songName = 'Song Name: ' + logSheet[`song`] + '\n';
             let preview = 'Preview: ' + logSheet[`preview`] + '\n';
