@@ -176,3 +176,63 @@ Artist Name: Jimi Hendrix
 Song Name: All Along the Watchtower - Live
 Preview: https://p.scdn.co/mp3-preview/8d64fa28766d888c6b585fececca8e72c3a93fff?cid=0415c550fcc44872ab77ddb58eb06fe6
 Album: Freedom: Atlanta Pop Festival (Live)
+
+==============================
+
+    API Called: OMDB Movie Database
+    User Search: Mr. Nobody
+    Year: 2009
+    IMDB Rating: 7.9/10
+    Rotten Tomatoe Rating: 67%
+    Production Country: Belgium, Germany, Canada, France, USA, UK
+    Languages: English, Mohawk
+    Plot: A boy stands on a station platform as a train is about to leave. Should he go with his mother or stay with his father? Infinite possibilities arise from this decision. As long as he doesn't choose, anything is possible.
+    Actors: Jared Leto, Sarah Polley, Diane Kruger, Linh Dan Pham
+
+==============================
+
+    API Called: OMDB Movie Database
+    User Search: The Santa Claus
+    Year: 2010
+    IMDB Rating: 5.9/10
+    Rotten Tomatoe Rating: No Data Returned
+    Production Country: Italy
+    Languages: Italian
+    Plot: On Christmas Eve in Milan, three friends dressed in Santa Claus costumes are arrested by the police during an apparent robbery attempt and taken to a police station, where the Chief ...
+    Actors: Aldo, Giovanni, Giacomo, Angela Finocchiaro
+
+==============================
+
+    API Called: OMDB Movie Database
+    User Search: Mr. Nobody
+    Year: 2009
+    IMDB Rating: 7.9/10
+    Rotten Tomatoe Rating: 67%
+    Production Country: Belgium, Germany, Canada, France, USA, UK
+    Languages: English, Mohawk
+    Plot: A boy stands on a station platform as a train is about to leave. Should he go with his mother or stay with his father? Infinite possibilities arise from this decision. As long as he doesn't choose, anything is possible.
+    Actors: Jared Leto, Sarah Polley, Diane Kruger, Linh Dan Pham
+
+==============================
+
+    API Called: OMDB Movie Database
+    User Search: The Santa Claus
+    Year: 2010
+    IMDB Rating: 5.9/10
+    Rotten Tomatoe Rating: No Data Returned
+    Production Country: Italy
+    Languages: Italian
+    Plot: On Christmas Eve in Milan, three friends dressed in Santa Claus costumes are arrested by the police during an apparent robbery attempt and taken to a police station, where the Chief ...
+    Actors: Aldo, Giovanni, Giacomo, Angela Finocchiaro
+
+==============================
+
+    API Called: OMDB Movie Database
+    User Search: The Santa Clause
+    Year: 1994
+    IMDB Rating: 6.4/10
+    Rotten Tomatoe Rating: 74%
+    Production Country: USA
+    Languages: English, Spanish
+    Plot: When a man inadvertantly kills Santa on Christmas Eve, he finds himself magically recruited to take his place.
+    Actors: Tim Allen, Judge Reinhold, Wendy Crewson, Eric Lloyd
