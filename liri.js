@@ -273,7 +273,7 @@ function toUser(res, check, name) {
     let resdat = res.data;
     if(check === 'BIT') {
         if(resdat.errorMessage === '[NotFound] The artist was not found' || resdat.length === 0 || resdat === `{warn=Not found}\n`) {
-            if(resdat.errorMessage === '[NotFound] The artist was not found' || resdat.errorMessage === undefined) {
+            if(resdat.errorMessage === '[NotFound] The artist was not found' || resdat === `{warn=Not found}\n`) {
                 console.log(`${divider}Band or artist is not recognized${divider}`);
                 inquireTitleArtist({choice: 'concert-this'});
                 return res;
