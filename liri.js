@@ -438,9 +438,6 @@ function bitAppendFile(log) {
 
 function spotAppendFile(log) {
     let length = (Math.floor((Object.keys(logSheet).length - 3) / 4));
-    console.log((Object.keys(logSheet).length));
-    console.log(length);
-    console.log(Object.keys(logSheet));
     fs.appendFile('log.txt', log, (err) => {
         if(err) throw err;
         if(Object.keys(logSheet).length < 8) {
