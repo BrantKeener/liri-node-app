@@ -236,3 +236,343 @@ Album: Freedom: Atlanta Pop Festival (Live)
     Languages: English, Spanish
     Plot: When a man inadvertantly kills Santa on Christmas Eve, he finds himself magically recruited to take his place.
     Actors: Tim Allen, Judge Reinhold, Wendy Crewson, Eric Lloyd
+
+==============================
+
+    API Called: Bandsintown/random
+    User Search: Passenger
+
+Venue Name: Sala Riviera
+Venue Location: Madrid, Spain
+Date: 04/02/2019
+
+Venue Name: Gran Teatre del Liceu
+Venue Location: Barcelona, Spain
+Date: 04/03/2019
+
+Venue Name: Paloma
+Venue Location: Nîmes, France
+Date: 04/05/2019
+
+Venue Name: Estragon Club
+Venue Location: Bologna, Italy
+Date: 04/07/2019
+
+Venue Name: Zeltbühne, Obere Matten
+Venue Location: Zermatt, Switzerland
+Date: 04/09/2019
+
+Venue Name: Gasometer
+Venue Location: Wien, Austria
+Date: 04/11/2019
+
+Venue Name: Budapest
+Venue Location: Budapest, Hungary
+Date: 04/12/2019
+
+Venue Name: Studio
+Venue Location: Kraków, Poland
+Date: 04/14/2019
+
+Venue Name: ROXY Prague
+Venue Location: Hlavní Město Praha, Czech Republic
+Date: 04/16/2019
+
+Venue Name: EmslandArena
+Venue Location: Lingen (ems), Germany
+Date: 04/18/2019
+
+Venue Name: den Atelier
+Venue Location: Luxembourg, Luxembourg
+Date: 04/20/2019
+
+Venue Name: Paaspop
+Venue Location: Schijndel, Netherlands
+Date: 04/21/2019
+
+==============================
+
+    API Called: Spotify/random
+    User Search: I Want it That Way
+
+Artist Name: Backstreet Boys
+Song Name: I Want It That Way
+Preview: https://p.scdn.co/mp3-preview/e72a05dc3f69c891e3390c3ceaa77fad02f6b5f6?cid=0415c550fcc44872ab77ddb58eb06fe6
+Album: The Hits--Chapter One
+
+Artist Name: Backstreet Boys
+Song Name: I Want It That Way
+Preview: https://p.scdn.co/mp3-preview/b8c2410a5acb68b462be6ac85f1312430e2b149c?cid=0415c550fcc44872ab77ddb58eb06fe6
+Album: Millennium
+
+Artist Name: Anthem Lights
+Song Name: I Want It That Way
+Preview: https://p.scdn.co/mp3-preview/4a163fbfa2dbbe4433f277e0e7395dca656364f5?cid=0415c550fcc44872ab77ddb58eb06fe6
+Album: Covers Part IV
+
+Artist Name: Tyler and Mark
+Song Name: I Want It That Way
+Preview: https://p.scdn.co/mp3-preview/99c791194bbd4e5f315ca8964babf0b69bc520b3?cid=0415c550fcc44872ab77ddb58eb06fe6
+Album: Beautiful Dreams
+
+Artist Name: Various Artists
+Song Name: I Want It That Way
+Preview: No Data Returned
+Album: Punk Goes Pop
+
+Artist Name: "Weird Al" Yankovic
+Song Name: Ebay (Parody of "I Want It That Way" by the Backstreet Boys)
+Preview: https://p.scdn.co/mp3-preview/e217ea111ab84a777f204252fce4b18d5de3ae80?cid=0415c550fcc44872ab77ddb58eb06fe6
+Album: Poodle Hat
+
+Artist Name: Various Artists
+Song Name: I Want It That Way
+Preview: https://p.scdn.co/mp3-preview/2f96341eb8415a3efb27375db1c4d59928408c2f?cid=0415c550fcc44872ab77ddb58eb06fe6
+Album: 90 Sweet 90s Hits!
+
+Artist Name: NKOTBSB
+Song Name: I Want It That Way
+Preview: https://p.scdn.co/mp3-preview/adf2485de3f3f375593b5307a792e8d8e6f19794?cid=0415c550fcc44872ab77ddb58eb06fe6
+Album: NKOTBSB
+
+Artist Name: Manuel Costa
+Song Name: I Want It That Way
+Preview: https://p.scdn.co/mp3-preview/cdde86f49ca4ef217ac08bbbb0c6295c16f015b0?cid=0415c550fcc44872ab77ddb58eb06fe6
+Album: I Want It That Way
+
+Artist Name: Boyce Avenue
+Song Name: I Want It That Way
+Preview: https://p.scdn.co/mp3-preview/764f1dcb8c9a9cec099cc361cb388f931bf023d3?cid=0415c550fcc44872ab77ddb58eb06fe6
+Album: Cover Sessions, Vol. 2
+
+Artist Name: Glee Cast
+Song Name: Bye Bye Bye / I Want It That Way (Glee Cast Version)
+Preview: https://p.scdn.co/mp3-preview/3aa63b5c98b98ae333e567813e5c720abb2914f0?cid=0415c550fcc44872ab77ddb58eb06fe6
+Album: Bye Bye Bye / I Want It That Way (Glee Cast Version)
+
+Artist Name: Steel Panther
+Song Name: I Want It That Way
+Preview: No Data Returned
+Album: I Want It That Way
+
+Artist Name: Scott Bradlee's Postmodern Jukebox
+Song Name: I Want It That Way
+Preview: https://p.scdn.co/mp3-preview/53296f4b689baaa0be6d94e8720c044e98d4b3e3?cid=0415c550fcc44872ab77ddb58eb06fe6
+Album: Selfies on Kodachrome
+
+Artist Name: Scary Pockets
+Song Name: I Want It That Way
+Preview: https://p.scdn.co/mp3-preview/33685e005149d5e7d0199a764163ff77f7762e29?cid=0415c550fcc44872ab77ddb58eb06fe6
+Album: Nu Funk
+
+Artist Name: MaxLife
+Song Name: I Want It That Way
+Preview: https://p.scdn.co/mp3-preview/a6c2734a24cf016a7f884c3f731e64371ba32555?cid=0415c550fcc44872ab77ddb58eb06fe6
+Album: I Want It That Way
+
+Artist Name: "Weird Al" Yankovic
+Song Name: Ebay (Parody of "I Want It That Way" by the Backstreet Boys)
+Preview: https://p.scdn.co/mp3-preview/5632d8e302d70afaa8f79c962aa4b2032a45b3ef?cid=0415c550fcc44872ab77ddb58eb06fe6
+Album: The Essential "Weird Al" Yankovic
+
+Artist Name: #90s Update
+Song Name: I Want It That Way
+Preview: https://p.scdn.co/mp3-preview/4722ade5be55bf642f5cc9578b94c092a0fcf3a7?cid=0415c550fcc44872ab77ddb58eb06fe6
+Album: #90s Update
+
+Artist Name: Various Artists
+Song Name: I Want It That Way
+Preview: https://p.scdn.co/mp3-preview/c9302062adf4f59e60335f30c7ca46b487a267fb?cid=0415c550fcc44872ab77ddb58eb06fe6
+Album: NOW That's What I Call 90s Pop
+
+Artist Name: Landon Austin
+Song Name: I Want It That Way
+Preview: https://p.scdn.co/mp3-preview/e777be5446dc3df34abc2eaec241edb5a590976c?cid=0415c550fcc44872ab77ddb58eb06fe6
+Album: I Want It That Way
+
+Artist Name: Scott Bradlee's Postmodern Jukebox
+Song Name: I Want It That Way
+Preview: https://p.scdn.co/mp3-preview/53296f4b689baaa0be6d94e8720c044e98d4b3e3?cid=0415c550fcc44872ab77ddb58eb06fe6
+Album: PMJ Is For Lovers: The Love Song Collection
+
+==============================
+
+    API Called: OMDB Movie Database/random
+    User Search: Saving Private Ryan
+    Year: 1998
+    IMDB Rating: 8.6/10
+    Rotten Tomatoe Rating: 93%
+    Production Country: USA
+    Languages: English, French, German, Czech
+    Plot: Following the Normandy Landings, a group of U.S. soldiers go behind enemy lines to retrieve a paratrooper whose brothers have been killed in action.
+    Actors: Tom Hanks, Tom Sizemore, Edward Burns, Barry Pepper
+
+==============================
+
+    API Called: Bandsintown/random
+    User Search: Passenger
+
+Venue Name: Sala Riviera
+Venue Location: Madrid, Spain
+Date: 04/02/2019
+
+Venue Name: Gran Teatre del Liceu
+Venue Location: Barcelona, Spain
+Date: 04/03/2019
+
+Venue Name: Paloma
+Venue Location: Nîmes, France
+Date: 04/05/2019
+
+Venue Name: Estragon Club
+Venue Location: Bologna, Italy
+Date: 04/07/2019
+
+Venue Name: Zeltbühne, Obere Matten
+Venue Location: Zermatt, Switzerland
+Date: 04/09/2019
+
+Venue Name: Gasometer
+Venue Location: Wien, Austria
+Date: 04/11/2019
+
+Venue Name: Budapest
+Venue Location: Budapest, Hungary
+Date: 04/12/2019
+
+Venue Name: Studio
+Venue Location: Kraków, Poland
+Date: 04/14/2019
+
+Venue Name: ROXY Prague
+Venue Location: Hlavní Město Praha, Czech Republic
+Date: 04/16/2019
+
+Venue Name: EmslandArena
+Venue Location: Lingen (ems), Germany
+Date: 04/18/2019
+
+Venue Name: den Atelier
+Venue Location: Luxembourg, Luxembourg
+Date: 04/20/2019
+
+Venue Name: Paaspop
+Venue Location: Schijndel, Netherlands
+Date: 04/21/2019
+
+==============================
+
+    API Called: Spotify/random
+    User Search: I Want it That Way
+
+Artist Name: Backstreet Boys
+Song Name: I Want It That Way
+Preview: https://p.scdn.co/mp3-preview/e72a05dc3f69c891e3390c3ceaa77fad02f6b5f6?cid=0415c550fcc44872ab77ddb58eb06fe6
+Album: The Hits--Chapter One
+
+Artist Name: Backstreet Boys
+Song Name: I Want It That Way
+Preview: https://p.scdn.co/mp3-preview/b8c2410a5acb68b462be6ac85f1312430e2b149c?cid=0415c550fcc44872ab77ddb58eb06fe6
+Album: Millennium
+
+Artist Name: Anthem Lights
+Song Name: I Want It That Way
+Preview: https://p.scdn.co/mp3-preview/4a163fbfa2dbbe4433f277e0e7395dca656364f5?cid=0415c550fcc44872ab77ddb58eb06fe6
+Album: Covers Part IV
+
+Artist Name: Tyler and Mark
+Song Name: I Want It That Way
+Preview: https://p.scdn.co/mp3-preview/99c791194bbd4e5f315ca8964babf0b69bc520b3?cid=0415c550fcc44872ab77ddb58eb06fe6
+Album: Beautiful Dreams
+
+Artist Name: Various Artists
+Song Name: I Want It That Way
+Preview: No Data Returned
+Album: Punk Goes Pop
+
+Artist Name: "Weird Al" Yankovic
+Song Name: Ebay (Parody of "I Want It That Way" by the Backstreet Boys)
+Preview: https://p.scdn.co/mp3-preview/e217ea111ab84a777f204252fce4b18d5de3ae80?cid=0415c550fcc44872ab77ddb58eb06fe6
+Album: Poodle Hat
+
+Artist Name: Various Artists
+Song Name: I Want It That Way
+Preview: https://p.scdn.co/mp3-preview/2f96341eb8415a3efb27375db1c4d59928408c2f?cid=0415c550fcc44872ab77ddb58eb06fe6
+Album: 90 Sweet 90s Hits!
+
+Artist Name: NKOTBSB
+Song Name: I Want It That Way
+Preview: https://p.scdn.co/mp3-preview/adf2485de3f3f375593b5307a792e8d8e6f19794?cid=0415c550fcc44872ab77ddb58eb06fe6
+Album: NKOTBSB
+
+Artist Name: Manuel Costa
+Song Name: I Want It That Way
+Preview: https://p.scdn.co/mp3-preview/cdde86f49ca4ef217ac08bbbb0c6295c16f015b0?cid=0415c550fcc44872ab77ddb58eb06fe6
+Album: I Want It That Way
+
+Artist Name: Boyce Avenue
+Song Name: I Want It That Way
+Preview: https://p.scdn.co/mp3-preview/764f1dcb8c9a9cec099cc361cb388f931bf023d3?cid=0415c550fcc44872ab77ddb58eb06fe6
+Album: Cover Sessions, Vol. 2
+
+Artist Name: Glee Cast
+Song Name: Bye Bye Bye / I Want It That Way (Glee Cast Version)
+Preview: https://p.scdn.co/mp3-preview/3aa63b5c98b98ae333e567813e5c720abb2914f0?cid=0415c550fcc44872ab77ddb58eb06fe6
+Album: Bye Bye Bye / I Want It That Way (Glee Cast Version)
+
+Artist Name: Steel Panther
+Song Name: I Want It That Way
+Preview: No Data Returned
+Album: I Want It That Way
+
+Artist Name: Scott Bradlee's Postmodern Jukebox
+Song Name: I Want It That Way
+Preview: https://p.scdn.co/mp3-preview/53296f4b689baaa0be6d94e8720c044e98d4b3e3?cid=0415c550fcc44872ab77ddb58eb06fe6
+Album: Selfies on Kodachrome
+
+Artist Name: Scary Pockets
+Song Name: I Want It That Way
+Preview: https://p.scdn.co/mp3-preview/33685e005149d5e7d0199a764163ff77f7762e29?cid=0415c550fcc44872ab77ddb58eb06fe6
+Album: Nu Funk
+
+Artist Name: MaxLife
+Song Name: I Want It That Way
+Preview: https://p.scdn.co/mp3-preview/a6c2734a24cf016a7f884c3f731e64371ba32555?cid=0415c550fcc44872ab77ddb58eb06fe6
+Album: I Want It That Way
+
+Artist Name: "Weird Al" Yankovic
+Song Name: Ebay (Parody of "I Want It That Way" by the Backstreet Boys)
+Preview: https://p.scdn.co/mp3-preview/5632d8e302d70afaa8f79c962aa4b2032a45b3ef?cid=0415c550fcc44872ab77ddb58eb06fe6
+Album: The Essential "Weird Al" Yankovic
+
+Artist Name: #90s Update
+Song Name: I Want It That Way
+Preview: https://p.scdn.co/mp3-preview/4722ade5be55bf642f5cc9578b94c092a0fcf3a7?cid=0415c550fcc44872ab77ddb58eb06fe6
+Album: #90s Update
+
+Artist Name: Various Artists
+Song Name: I Want It That Way
+Preview: https://p.scdn.co/mp3-preview/c9302062adf4f59e60335f30c7ca46b487a267fb?cid=0415c550fcc44872ab77ddb58eb06fe6
+Album: NOW That's What I Call 90s Pop
+
+Artist Name: Landon Austin
+Song Name: I Want It That Way
+Preview: https://p.scdn.co/mp3-preview/e777be5446dc3df34abc2eaec241edb5a590976c?cid=0415c550fcc44872ab77ddb58eb06fe6
+Album: I Want It That Way
+
+Artist Name: Scott Bradlee's Postmodern Jukebox
+Song Name: I Want It That Way
+Preview: https://p.scdn.co/mp3-preview/53296f4b689baaa0be6d94e8720c044e98d4b3e3?cid=0415c550fcc44872ab77ddb58eb06fe6
+Album: PMJ Is For Lovers: The Love Song Collection
+
+==============================
+
+    API Called: OMDB Movie Database/random
+    User Search: Saving Private Ryan
+    Year: 1998
+    IMDB Rating: 8.6/10
+    Rotten Tomatoe Rating: 93%
+    Production Country: USA
+    Languages: English, French, German, Czech
+    Plot: Following the Normandy Landings, a group of U.S. soldiers go behind enemy lines to retrieve a paratrooper whose brothers have been killed in action.
+    Actors: Tom Hanks, Tom Sizemore, Edward Burns, Barry Pepper
