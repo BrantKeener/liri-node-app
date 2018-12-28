@@ -24,8 +24,7 @@ Standard
 
 ## Demo
 
-The following video demonstrates how this app works:
-[Demo Video](/video/Liri-Bot Demonstration_Medium.mp4)
+To view the demonstration video, please go to the "video" file at the top of this repository, and download the video.
 
 ## Tech/framework Used
 
