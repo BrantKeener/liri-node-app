@@ -170,8 +170,9 @@ function APIReachOut(res, check, name) {
         url: queryURL,
         responseType: 'json',
     }).then(response => {
-        if(response.data.Error === 'Movie not found!') {
-            console.log(`${divider}${response.data.Error}\nPlease try again.${divider}`);
+        let resdat = response.data;
+        if(resdat.Error === 'Movie not found!') {
+            console.log(`${divider}${resdat.Error}\nPlease try again.${divider}`);
             inquireTitleArtist({choice: 'movie-this'});
         } else {
             toUser(response, check, name);
@@ -271,9 +272,9 @@ function toUser(res, check, name) {
     let nodat = `No Data Returned`;
     let resdat = res.data;
     if(check === 'BIT') {
-        if(resdat.errorMessage === '[NotFound] The artist was not found' || resdat.length === 0) {
-            if(resdat.errorMessage === '[NotFound] The artist was not found') {
-                console.log(`${divider}Band or artist is either not recognized${divider}`);
+        if(resdat.errorMessage === '[NotFound] The artist was not found' || resdat.length === 0 || resdat === `{warn=Not found}\n`) {
+            if(resdat.errorMessage === '[NotFound] The artist was not found' || resdat.errorMessage === undefined) {
+                console.log(`${divider}Band or artist is not recognized${divider}`);
                 inquireTitleArtist({choice: 'concert-this'});
                 return res;
             } else if(resdat.length === 0) {

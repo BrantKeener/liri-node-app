@@ -1,0 +1,28 @@
+
+
+==============================
+
+    API Called: Bandsintown
+    User Search: Rhianna
+
+==============================
+That artist or band is not currently touring
+==============================
+
+==============================
+
+    API Called: Bandsintown
+    User Search: asdf
+
+==============================
+That artist or band is not currently touring
+==============================
+
+==============================
+
+    API Called: Bandsintown
+    User Search: asdf
+
+==============================
+That artist or band is not currently touring
+==============================
