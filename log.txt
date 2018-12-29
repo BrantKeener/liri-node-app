@@ -576,3 +576,24 @@ Album: PMJ Is For Lovers: The Love Song Collection
     Languages: English, French, German, Czech
     Plot: Following the Normandy Landings, a group of U.S. soldiers go behind enemy lines to retrieve a paratrooper whose brothers have been killed in action.
     Actors: Tom Hanks, Tom Sizemore, Edward Burns, Barry Pepper
+
+==============================
+
+    API Called: Bandsintown
+    User Search: The Get up Kids
+
+Venue Name: Gateway City Arts
+Venue Location: Holyoke, United States
+Date: 12/28/2018
+
+Venue Name: 3S Artspace
+Venue Location: Portsmouth, United States
+Date: 12/29/2018
+
+Venue Name: Rough Trade
+Venue Location: Brooklyn, United States
+Date: 12/30/2018
+
+Venue Name: Rough Trade
+Venue Location: Brooklyn, United States
+Date: 12/31/2018

@@ -1,4 +1,6 @@
-To Do: You need to fix all of the links.
+
+**Note: If you would like to see a demo, go here: https://brantkeener.github.io/Backend-Demos/**
+**Note: The .env file structure is easiest to copy by opening this readme in VS Code, and copying the structure between the ==========**
 
 # Liri the Bot
 
@@ -16,7 +18,7 @@ Creating **Liri the Bot** allowed for exploration of multiple APIs, including th
 
 ## Build Status
 
-Everything works well, except for logging the data.
+Complete
 
 ## Code Style
 
@@ -38,6 +40,7 @@ A clean and user-friendly command line interface with robust error handling and 
 
 Perform either a clone or a fork by visiting [Liri Bot](https://github.com/BrantKeener/liri-node-app). This will give you access to everything except the **.env** file. The **.env** file contains the following information laid out exactly as written:
 
+**====================**
 # Spotify API keys
 
 SPOTIFY_ID=_Put your spotify CLIENT ID here_
@@ -50,6 +53,7 @@ BIT_ID=_Put your Bandsintown API Key here_
 # OMDB API keys
 
 OMDB_ID=_Put your OMDB API Key here_ 
+**====================**
 
 The user must provide all of their own keys and secrets as seen above for this app to work properly. They can be obtained in the following places: 
 1. [Spotify](HTTPS://developer.spotify.com/dashboard)
