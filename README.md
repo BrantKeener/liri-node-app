@@ -34,7 +34,7 @@ Built entirely utilizing Node.js
 
 ## Features
 
-A clean and user-friendly command line interface with robust error handling and frequent commentary to the user allows this app to be utilized bye users that are completely new to working in the CLI. By commenting the user through the project within the command line, a straight forward user experience is possible within an aspect of computing (the CLI) that is often very intimidating for users.
+A clean and user-friendly command line interface with robust error handling and frequent commentary to the user allows this app to be utilized by users that are completely new to working in the CLI. By commenting the user through the project within the command line, a straight forward user experience is possible within an aspect of computing (the CLI) that is often very intimidating for users.
 
 ## Installation
 
