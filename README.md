@@ -53,6 +53,7 @@ BIT_ID=_Put your Bandsintown API Key here_
 # OMDB API keys
 
 OMDB_ID=_Put your OMDB API Key here_ 
+
 **====================**
 
 The user must provide all of their own keys and secrets as seen above for this app to work properly. They can be obtained in the following places: 
