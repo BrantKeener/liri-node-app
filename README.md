@@ -44,6 +44,7 @@ Perform either a clone or a fork by visiting [Liri Bot](https://github.com/Brant
 # Spotify API keys
 
 SPOTIFY_ID=_Put your spotify CLIENT ID here_
+
 SPOTIFY_SECRET=_Put your CLIENT SECRET here_
 
 # Bands In Town API keys
