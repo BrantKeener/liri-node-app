@@ -4,6 +4,8 @@
 
 # Liri the Bot
 
+![Liri Screen Capture](./liri-cap.png)
+
 *Entertainment built for Node.js*
 **Liri the Bot** allows users to perform three different types of searches, all of which are entertainment related.
 The user may:
