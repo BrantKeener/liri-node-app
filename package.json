@@ -18,10 +18,11 @@
   },
   "homepage": "https://github.com/BrantKeener/liri-node-app#readme",
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "dotenv": "^6.2.0",
     "fs": "0.0.1-security",
     "inquirer": "^6.2.1",
+    "lodash": "^4.17.15",
     "moment": "^2.22.2"
   }
 }
